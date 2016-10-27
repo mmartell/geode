@@ -14,22 +14,19 @@
  */
 package org.apache.geode.management.internal.cli.shell;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.geode.management.cli.CliMetaData;
 import org.apache.geode.management.cli.ConverterHint;
 import org.apache.geode.management.cli.Result;
 import org.apache.geode.management.internal.cli.CommandManager;
 import org.apache.geode.management.internal.cli.GfshParser;
-import org.apache.geode.management.internal.cli.annotation.CliArgument;
 import org.apache.geode.management.internal.cli.result.ResultBuilder;
 import org.apache.geode.management.internal.security.ResourceOperation;
 import org.apache.geode.security.ResourcePermission.Operation;
 import org.apache.geode.security.ResourcePermission.Resource;
 import org.apache.geode.test.junit.categories.UnitTest;
-
 import org.junit.After;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -37,6 +34,8 @@ import org.springframework.shell.core.CommandMarker;
 import org.springframework.shell.core.annotation.CliCommand;
 import org.springframework.shell.core.annotation.CliOption;
 import org.springframework.shell.event.ParseResult;
+
+import java.util.List;
 
 /**
  * GfshExecutionStrategyTest - Includes tests to for GfshExecutionStrategyTest
@@ -64,10 +63,9 @@ public class GfshExecutionStrategyJUnitTest {
     CommandManager commandManager = CommandManager.getInstance();
     assertNotNull("CommandManager should not be null.", commandManager);
     commandManager.add(Commands.class.newInstance());
-    GfshParser parser = new GfshParser(commandManager);
+    GfshParser parser = GfshParser.getInstance();
     String[] command1Names =
-        ((CliCommand) Commands.class.getMethod(COMMAND1_NAME).getAnnotation(CliCommand.class))
-            .value();
+        Commands.class.getMethod(COMMAND1_NAME).getAnnotation(CliCommand.class).value();
     String input = command1Names[0];
     ParseResult parseResult = null;
     parseResult = parser.parse(input);
@@ -89,8 +87,7 @@ public class GfshExecutionStrategyJUnitTest {
     assertNotNull("CommandManager should not be null.", commandManager);
     commandManager.add(Commands.class.newInstance());
     String[] command1Names =
-        ((CliCommand) Commands.class.getMethod(COMMAND1_NAME).getAnnotation(CliCommand.class))
-            .value();
+        Commands.class.getMethod(COMMAND1_NAME).getAnnotation(CliCommand.class).value();
     String[] args = new String[] {command1Names[0]};
     Gfsh gfsh = Gfsh.getInstance(false, args, new GfshConfig());
     GfshExecutionStrategy gfshExecutionStrategy = new GfshExecutionStrategy(gfsh);
@@ -130,8 +127,8 @@ public class GfshExecutionStrategyJUnitTest {
 
     @CliCommand(value = {"testMultiWordArg"})
     @ResourceOperation(resource = Resource.CLUSTER, operation = Operation.READ)
-    public static Result testMultiWordArg(@CliArgument(name = "arg1") String arg1,
-        @CliArgument(name = "arg2") String arg2) {
+    public static Result testMultiWordArg(@CliOption(key = "arg1") String arg1,
+        @CliOption(key = "arg2") String arg2) {
       return null;
     }
   }

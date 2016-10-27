@@ -1333,6 +1333,9 @@ public class LauncherLifecycleCommands extends AbstractCommandsSupport {
   @CliMetaData(shellOnly = true,
       relatedTopic = {CliStrings.TOPIC_GEODE_SERVER, CliStrings.TOPIC_GEODE_LIFECYCLE})
   public Result startServer(
+      @CliOption(key = CliStrings.START_SERVER__NAME, mandatory = true,
+          unspecifiedDefaultValue = CliMetaData.ANNOTATION_NULL_VALUE,
+          help = CliStrings.START_SERVER__NAME__HELP) final String memberName,
       @CliOption(key = CliStrings.START_SERVER__ASSIGN_BUCKETS, unspecifiedDefaultValue = "false",
           specifiedDefaultValue = "true",
           help = CliStrings.START_SERVER__ASSIGN_BUCKETS__HELP) final Boolean assignBuckets,
@@ -1444,9 +1447,6 @@ public class LauncherLifecycleCommands extends AbstractCommandsSupport {
       @CliOption(key = CliStrings.START_SERVER__MESSAGE__TIME__TO__LIVE,
           unspecifiedDefaultValue = CliMetaData.ANNOTATION_NULL_VALUE,
           help = CliStrings.START_SERVER__MESSAGE__TIME__TO__LIVE__HELP) final Integer messageTimeToLive,
-      @CliOption(key = CliStrings.START_SERVER__NAME, mandatory = true,
-          unspecifiedDefaultValue = CliMetaData.ANNOTATION_NULL_VALUE,
-          help = CliStrings.START_SERVER__NAME__HELP) final String memberName,
       @CliOption(key = CliStrings.START_SERVER__OFF_HEAP_MEMORY_SIZE,
           unspecifiedDefaultValue = CliMetaData.ANNOTATION_NULL_VALUE,
           help = CliStrings.START_SERVER__OFF_HEAP_MEMORY_SIZE__HELP) final String offHeapMemorySize,
