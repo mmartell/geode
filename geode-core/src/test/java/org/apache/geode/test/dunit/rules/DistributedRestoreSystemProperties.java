@@ -46,7 +46,7 @@ public class DistributedRestoreSystemProperties extends RestoreSystemProperties
   @Override
   protected void before() throws Throwable {
     super.before();
-    this.invoker.remoteInvokeInEveryVMAndLocator(new SerializableRunnable() {
+    this.invoker.invokeInEveryVMAndController(new SerializableRunnable() {
       @Override
       public void run() {
         originalProperties = getProperties();
@@ -58,7 +58,7 @@ public class DistributedRestoreSystemProperties extends RestoreSystemProperties
   @Override
   protected void after() {
     super.after();
-    this.invoker.remoteInvokeInEveryVMAndLocator(new SerializableRunnable() {
+    this.invoker.invokeInEveryVMAndController(new SerializableRunnable() {
       @Override
       public void run() {
         setProperties(originalProperties);

@@ -111,7 +111,7 @@ public abstract class JUnit4DistributedTestCase implements DistributedTestFixtur
   }
 
   @Rule
-  public SerializableTestName testName = new SerializableTestName();
+  public SerializableTestName testNameForDistributedTestCase = new SerializableTestName();
 
   @BeforeClass
   public static final void initializeDistributedTestCase() {
@@ -122,7 +122,7 @@ public abstract class JUnit4DistributedTestCase implements DistributedTestFixtur
     if (this.distributedTestFixture != this) {
       return this.distributedTestFixture.getName();
     }
-    return this.testName.getMethodName();
+    return this.testNameForDistributedTestCase.getMethodName();
   }
 
   public final Class<? extends DistributedTestFixture> getTestClass() {
