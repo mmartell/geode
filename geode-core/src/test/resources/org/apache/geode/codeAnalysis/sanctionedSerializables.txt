@@ -482,7 +482,9 @@ org/apache/geode/internal/util/concurrent/StoppableReentrantReadWriteLock,true,-
 org/apache/geode/lang/AttachAPINotFoundException,true,-5953162090462085551
 org/apache/geode/management/AlreadyRunningException,true,8947734854770335071
 org/apache/geode/management/DependenciesNotFoundException,true,9082304929238159814
+org/apache/geode/management/JVMMetrics,false,committedMemory:long,gcCount:long,gcTimeMillis:long,initMemory:long,maxMemory:long,totalThreads:int,usedMemory:long
 org/apache/geode/management/ManagementException,true,879398950879472121
+org/apache/geode/management/OSMetrics,false,arch:java/lang/String,availableProcessors:int,committedVirtualMemorySize:long,freePhysicalMemorySize:long,freeSwapSpaceSize:long,maxFileDescriptorCount:long,name:java/lang/String,openFileDescriptorCount:long,processCpuTime:long,systemLoadAverage:double,totalPhysicalMemorySize:long,totalSwapSpaceSize:long,version:java/lang/String
 org/apache/geode/management/cli/CommandProcessingException,true,-1398779521639575884,errorData:java/lang/Object,errorType:int
 org/apache/geode/management/cli/CommandServiceException,true,7316102209844678329
 org/apache/geode/management/cli/Result$Status,false,code:int
@@ -561,7 +563,6 @@ org/apache/geode/management/internal/cli/functions/DestroyDiskStoreFunction,true
 org/apache/geode/management/internal/cli/functions/DestroyIndexFunction,true,1
 org/apache/geode/management/internal/cli/functions/ExportConfigFunction,true,1
 org/apache/geode/management/internal/cli/functions/ExportDataFunction,true,1
-org/apache/geode/management/internal/cli/functions/ExportSharedConfigurationFunction,true,1
 org/apache/geode/management/internal/cli/functions/FetchRegionAttributesFunction,true,4366812590788342070
 org/apache/geode/management/internal/cli/functions/FetchRegionAttributesFunction$FetchRegionAttributesFunctionResult,true,-3970828263897978845,cacheListenerClasses:java/lang/String[],cacheLoaderClass:java/lang/String,cacheWriterClass:java/lang/String,regionAttributes:org/apache/geode/cache/RegionAttributes
 org/apache/geode/management/internal/cli/functions/FetchSharedConfigurationStatusFunction,true,1
@@ -579,14 +580,12 @@ org/apache/geode/management/internal/cli/functions/GetRegionsFunction,true,1
 org/apache/geode/management/internal/cli/functions/GetStackTracesFunction,true,1
 org/apache/geode/management/internal/cli/functions/GetSubscriptionQueueSizeFunction,true,1
 org/apache/geode/management/internal/cli/functions/ImportDataFunction,true,1
-org/apache/geode/management/internal/cli/functions/ImportSharedConfigurationArtifactsFunction,true,1
 org/apache/geode/management/internal/cli/functions/ListAsyncEventQueuesFunction,true,1
 org/apache/geode/management/internal/cli/functions/ListDeployedFunction,true,1
 org/apache/geode/management/internal/cli/functions/ListDiskStoresFunction,false
 org/apache/geode/management/internal/cli/functions/ListDurableCqNamesFunction,true,1
 org/apache/geode/management/internal/cli/functions/ListFunctionFunction,true,1
 org/apache/geode/management/internal/cli/functions/ListIndexFunction,false
-org/apache/geode/management/internal/cli/functions/LoadSharedConfigurationFunction,true,1
 org/apache/geode/management/internal/cli/functions/LogFileFunction,true,1
 org/apache/geode/management/internal/cli/functions/MemberRegionFunction,true,1
 org/apache/geode/management/internal/cli/functions/MembersForRegionFunction,true,8746830191680509335
@@ -625,11 +624,6 @@ org/apache/geode/management/internal/cli/util/MemberInformation,true,1,cacheXmlF
 org/apache/geode/management/internal/cli/util/MemberNotFoundException,true,5686788909239181174
 org/apache/geode/management/internal/cli/util/VisualVmNotFoundException,true,-8491645604829510102
 org/apache/geode/management/internal/configuration/domain/SharedConfigurationStatus,false
-org/apache/geode/management/internal/configuration/functions/AddJarFunction,true,1
-org/apache/geode/management/internal/configuration/functions/AddXmlEntityFunction,true,1
-org/apache/geode/management/internal/configuration/functions/DeleteJarFunction,true,1
-org/apache/geode/management/internal/configuration/functions/DeleteXmlEntityFunction,true,1
-org/apache/geode/management/internal/configuration/functions/ModifyXmlAndPropertiesFunction,true,1
 org/apache/geode/management/internal/configuration/functions/UploadJarFunction,true,1
 org/apache/geode/management/internal/web/domain/Link,false,href:java/net/URI,method:org/apache/geode/management/internal/web/http/HttpMethod,relation:java/lang/String
 org/apache/geode/management/internal/web/domain/QueryParameterSource,true,34131123582155,objectName:javax/management/ObjectName,queryExpression:javax/management/QueryExp
