@@ -14,7 +14,6 @@
  */
 package org.apache.geode.management.internal.cli.functions;
 
-import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.apache.geode.cache.execute.FunctionAdapter;
 import org.apache.geode.cache.execute.FunctionContext;
@@ -24,6 +23,8 @@ import org.apache.geode.internal.InternalEntity;
 import org.apache.geode.management.internal.cli.CliUtil;
 import org.apache.geode.management.internal.cli.i18n.CliStrings;
 import org.apache.geode.management.internal.configuration.utils.ZipUtils;
+
+import java.io.File;
 
 /******
  * This function copies the zipped shared configuration, renames the existing shared configuration
@@ -54,8 +55,14 @@ public class ImportSharedConfigurationArtifactsFunction extends FunctionAdapter
         FileUtils.writeByteArrayToFile(zippedSharedConfiguration, zipFileData);
         ZipUtils.unzip(zipFileName, sc.getSharedConfigurationDirPath());
 
-        CliFunctionResult cliFunctionResult = new CliFunctionResult(memberName, true,
-            CliStrings.IMPORT_SHARED_CONFIG__ARTIFACTS__COPIED);
+        // load it from the disk
+        sc.loadSharedConfigurationFromDisk();
+
+        // do we need to delete the xml/properites? this should just be a stale copy.
+        // remember in the ExportSharedConfigurationFunction, we write them to the file system again
+
+        CliFunctionResult cliFunctionResult =
+            new CliFunctionResult(memberName, true, CliStrings.IMPORT_SHARED_CONFIG__SUCCESS__MSG);
         context.getResultSender().lastResult(cliFunctionResult);
       } catch (Exception e) {
         CliFunctionResult result =
