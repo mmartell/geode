@@ -71,8 +71,6 @@ import org.apache.geode.cache.Region;
  * 
  * @see PartitionAttributesFactory#addPartitionListener(PartitionListener)
  * 
- *      Note : Please contact support@gemstone.com before using these APIs
- * 
  * @since GemFire 6.5
  * 
  */
