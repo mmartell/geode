@@ -69,7 +69,7 @@ public class PartitionListenerDUnitTest extends JUnit4CacheTestCase {
     createPR(vm0, regionName, true);
     createData(vm0, 0, 1000, "A", regionName);
 
-    //Assert that afterPrimary is invoked for every primary created on the vm
+    // Assert that afterPrimary is invoked for every primary created on the vm
     List<Integer> vm1PrimariesCreated = getPrimariesCreated(vm1, regionName);
     List<Integer> vm2PrimariesCreated = getPrimariesCreated(vm2, regionName);
     List<Integer> vm1ActualPrimaries = getPrimariesOn(vm1, regionName);
@@ -86,7 +86,7 @@ public class PartitionListenerDUnitTest extends JUnit4CacheTestCase {
     rebalance(vm3);
 
     // Verify listener invocations
-    //Assert afterRegionCreate is invoked on every VM.
+    // Assert afterRegionCreate is invoked on every VM.
     assertEquals(regionName, getRegionNameFromListener(vm0, regionName));
     assertEquals(regionName, getRegionNameFromListener(vm1, regionName));
     assertEquals(regionName, getRegionNameFromListener(vm2, regionName));
@@ -150,46 +150,43 @@ public class PartitionListenerDUnitTest extends JUnit4CacheTestCase {
   }
 
   protected List<Integer> getPrimariesOn(VM vm, final String regionName) {
-    SerializableCallable getPrimariesOn =
-        new SerializableCallable("getPrimariesOn") {
+    SerializableCallable getPrimariesOn = new SerializableCallable("getPrimariesOn") {
 
-          public Object call() {
-            Cache cache = getCache();
-            Region region = cache.getRegion(regionName);
-            return new ArrayList<>(((PartitionedRegion) region).getDataStore()
-                .getAllLocalPrimaryBucketIds());
-          }
-        };
+      public Object call() {
+        Cache cache = getCache();
+        Region region = cache.getRegion(regionName);
+        return new ArrayList<>(
+            ((PartitionedRegion) region).getDataStore().getAllLocalPrimaryBucketIds());
+      }
+    };
     return (List<Integer>) vm.invoke(getPrimariesOn);
   }
 
   protected List<Integer> getPrimariesCreated(VM vm, final String regionName) {
-    SerializableCallable getPrimariesCreated =
-        new SerializableCallable("getPrimariesCreated") {
+    SerializableCallable getPrimariesCreated = new SerializableCallable("getPrimariesCreated") {
 
-          public Object call() {
-            Cache cache = getCache();
-            Region region = cache.getRegion(regionName);
-            TestPartitionListener listener = (TestPartitionListener) region.getAttributes()
-                .getPartitionAttributes().getPartitionListeners()[0];
-            return listener.getPrimariesCreated();
-          }
-        };
+      public Object call() {
+        Cache cache = getCache();
+        Region region = cache.getRegion(regionName);
+        TestPartitionListener listener = (TestPartitionListener) region.getAttributes()
+            .getPartitionAttributes().getPartitionListeners()[0];
+        return listener.getPrimariesCreated();
+      }
+    };
     return (List<Integer>) vm.invoke(getPrimariesCreated);
   }
 
   protected String getRegionNameFromListener(VM vm, final String regionName) {
-    SerializableCallable getRegionName =
-        new SerializableCallable("getRegionName") {
+    SerializableCallable getRegionName = new SerializableCallable("getRegionName") {
 
-          public Object call() {
-            Cache cache = getCache();
-            Region region = cache.getRegion(regionName);
-            TestPartitionListener listener = (TestPartitionListener) region.getAttributes()
-                .getPartitionAttributes().getPartitionListeners()[0];
-            return listener.getRegionName();
-          }
-        };
+      public Object call() {
+        Cache cache = getCache();
+        Region region = cache.getRegion(regionName);
+        TestPartitionListener listener = (TestPartitionListener) region.getAttributes()
+            .getPartitionAttributes().getPartitionListeners()[0];
+        return listener.getRegionName();
+      }
+    };
     return (String) vm.invoke(getRegionName);
   }
 
@@ -267,7 +264,7 @@ public class PartitionListenerDUnitTest extends JUnit4CacheTestCase {
       return this.regionName;
     }
 
-    public  void afterRegionCreate(Region<?, ?> region) {
+    public void afterRegionCreate(Region<?, ?> region) {
       this.regionName = region.getName();
     }
 
