@@ -25,13 +25,6 @@ import static org.apache.geode.distributed.ConfigurationProperties.LOAD_CLUSTER_
 import static org.apache.geode.distributed.ConfigurationProperties.LOCATORS;
 import static org.apache.geode.distributed.ConfigurationProperties.LOG_FILE_SIZE_LIMIT;
 import static org.apache.geode.distributed.ConfigurationProperties.USE_CLUSTER_CONFIGURATION;
-import static org.apache.geode.management.internal.configuration.ClusterConfigDUnitTest.EXPORTED_CLUSTER_CONFIG_ZIP_FILENAME;
-import static org.apache.geode.management.internal.configuration.ClusterConfigDUnitTest.GROUP1;
-import static org.apache.geode.management.internal.configuration.ClusterConfigDUnitTest.GROUP1_AND_2;
-import static org.apache.geode.management.internal.configuration.ClusterConfigDUnitTest.GROUP2;
-import static org.apache.geode.management.internal.configuration.ClusterConfigDUnitTest.NO_GROUP;
-import static org.apache.geode.management.internal.configuration.ClusterConfigDUnitTest.verifyLocatorConfig;
-import static org.apache.geode.management.internal.configuration.ClusterConfigDUnitTest.verifyServerConfig;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.apache.geode.cache.Cache;
@@ -362,12 +355,14 @@ public class ClusterConfigDUnitTest extends JUnit4DistributedTestCase {
       expectedJarNames.add(getServerJarName(jarName));
     }
 
+    // make sure each expected jar is in the working dir
     for (String jarName : expectedJarNames) {
       assertThat(workingDir.listFiles()).contains(new File(workingDir, jarName));
     }
 
     File[] acutalJars = workingDir.listFiles(pathname -> pathname.getName().contains(".jar"));
 
+    // make sure the workingdir contains only jars in the list
     for (File jar : acutalJars) {
       assertThat(expectedJarNames).contains(jar.getName());
     }
@@ -401,11 +396,6 @@ public class ClusterConfigDUnitTest extends JUnit4DistributedTestCase {
   public static void verifyFileExists(Member member, String relativePath) {
     File workingDir = member.getWorkingDir();
     assertThat(new File(workingDir, relativePath)).exists();
-  }
-
-  public static void verifyFileNotExist(Member member, String relativePath) {
-    File workingDir = member.getWorkingDir();
-    assertThat(new File(workingDir, relativePath)).doesNotExist();
   }
 
   private static class ExpectedConfig implements Serializable {
