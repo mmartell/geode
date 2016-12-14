@@ -14,16 +14,17 @@
  */
 package org.apache.geode.test.dunit.rules.tests;
 
-import java.io.Serializable;
-
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExternalResource;
+import org.junit.experimental.categories.Category;
 
 import org.apache.geode.test.dunit.rules.DistributedRule;
 import org.apache.geode.test.dunit.rules.DistributedTestRule;
+import org.apache.geode.test.junit.categories.DistributedTest;
 import org.apache.geode.test.junit.rules.serializable.SerializableExternalResource;
 
+// TODO: add assertions to all dunit VMs
+@Category(DistributedTest.class)
 public class DistributedTestRuleTest {
 
   @DistributedRule
