@@ -60,9 +60,7 @@ public class LocatorStarterRule extends ExternalResource implements Serializable
     if (properties.containsKey(JMX_MANAGER_PORT)) {
       int jmxPort = Integer.parseInt(properties.getProperty(JMX_MANAGER_PORT));
       if (jmxPort > 0) {
-        if (!properties.containsKey(JMX_MANAGER)) {
-          properties.put(JMX_MANAGER, "true");
-        }
+        // on a locator jmx-manager is default to true, but jmx-manager-start is false
         if (!properties.containsKey(JMX_MANAGER_START)) {
           properties.put(JMX_MANAGER_START, "true");
         }
