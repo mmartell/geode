@@ -33,7 +33,10 @@ class RemoteInvoker implements Serializable {
   // dunit VMs
   // locator VM
 
-  public void invokeInEveryVMAndController(final SerializableRunnableIF runnable) {
+  /**
+   * Invokes in these VMs: controller VM and dunit VMs but not the dunit locator VM
+   */
+  public void invokeInEveryVM(final SerializableRunnableIF runnable) {
     try {
       runnable.run();
     } catch (Exception e) {
@@ -42,6 +45,9 @@ class RemoteInvoker implements Serializable {
     Invoke.invokeInEveryVM(runnable);
   }
 
+  /**
+   * Invokes in all VMs: controller VM, dunit VMs, and the dunit locator VM
+   */
   public void invokeInEveryVMAndLocator(final SerializableRunnableIF runnable) {
     Invoke.invokeInEveryVM(runnable);
     invokeInLocator(runnable);

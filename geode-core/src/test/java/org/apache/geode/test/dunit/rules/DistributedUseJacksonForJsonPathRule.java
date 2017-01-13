@@ -32,12 +32,12 @@ public class DistributedUseJacksonForJsonPathRule extends UseJacksonForJsonPathR
 
   @Override
   public void before() {
-    this.invoker.invokeInEveryVMAndController(DistributedUseJacksonForJsonPathRule::invokeBefore);
+    this.invoker.invokeInEveryVM(DistributedUseJacksonForJsonPathRule::invokeBefore);
   }
 
   @Override
   public void after() {
-    this.invoker.invokeInEveryVMAndController(DistributedUseJacksonForJsonPathRule::invokeAfter);
+    this.invoker.invokeInEveryVM(DistributedUseJacksonForJsonPathRule::invokeAfter);
   }
 
   private static void invokeBefore() {

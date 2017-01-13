@@ -43,14 +43,14 @@ public class DistributedDisconnectRule extends DistributedExternalResource {
   @Override
   protected void before() throws Throwable {
     if (this.disconnectBefore) {
-      invoker().invokeInEveryVMAndController(serializableRunnable());
+      invoker().invokeInEveryVM(serializableRunnable());
     }
   }
 
   @Override
   protected void after() {
     if (this.disconnectAfter) {
-      invoker().invokeInEveryVMAndController(serializableRunnable());
+      invoker().invokeInEveryVM(serializableRunnable());
     }
   }
 
