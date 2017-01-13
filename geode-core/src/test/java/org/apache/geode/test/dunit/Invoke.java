@@ -22,13 +22,13 @@ import java.util.Map;
  * invoke a <code>SerializableRunnable</code> or <code>SerializableCallable</code> in a remote test
  * <code>VM</code>.
  * 
- * These methods can be used directly: <code>Invoke.invokeInEveryVMAndController(...)</code>,
- * however, they are intended to be referenced through static import:
+ * These methods can be used directly: <code>Invoke.invokeInEveryVM(...)</code>, however, they are
+ * intended to be referenced through static import:
  *
  * <pre>
  * import static org.apache.geode.test.dunit.Invoke.*;
  *    ...
- *    invokeInEveryVMAndController(...);
+ *    invokeInEveryVM(...);
  * </pre>
  *
  * Extracted from DistributedTestCase.

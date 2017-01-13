@@ -89,7 +89,7 @@ public class TXLockServiceDUnitTest extends JUnit4DistributedTestCase {
 
   @Override
   public final void preTearDown() throws Exception {
-    // invokeInEveryVMAndController(TXLockServiceDUnitTest.class,
+    // invokeInEveryVM(TXLockServiceDUnitTest.class,
     // "remoteDumpAllDLockServices");
 
     Invoke.invokeInEveryVM(TXLockServiceDUnitTest.class, "destroyServices");
@@ -114,7 +114,7 @@ public class TXLockServiceDUnitTest extends JUnit4DistributedTestCase {
   public void testGetAndDestroy() {
     forEachVMInvoke("checkGetAndDestroy", new Object[] {});
     /*
-     * invokeInEveryVMAndController(TXLockServiceDUnitTest.class, "destroyServices");
+     * invokeInEveryVM(TXLockServiceDUnitTest.class, "destroyServices");
      * forEachVMInvoke("checkGetAndDestroy", new Object[] {});
      */
   }
