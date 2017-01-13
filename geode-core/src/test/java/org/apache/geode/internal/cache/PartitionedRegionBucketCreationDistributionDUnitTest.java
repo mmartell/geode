@@ -443,7 +443,9 @@ public class PartitionedRegionBucketCreationDistributionDUnitTest
       }
     });
 
-    // invokeInEveryVMAndController(new SerializableRunnable("") {
+    // final int bucketPerHost = (int) Math.ceil(((double) maxBuckets / Host.getHostCount()));
+
+    // invokeInEveryVM(new SerializableRunnable("") {
     //
     // }
 
