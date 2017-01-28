@@ -42,12 +42,12 @@ namespace Apache
       void CacheableObjectArray::ToData(DataOutput^ output)
       {
         output->WriteArrayLen((int32_t)Count);
-        output->WriteByte((int8_t)apache::geode::client::GemfireTypeIdsImpl::Class);
-        output->WriteByte((int8_t)apache::geode::client::GemfireTypeIds::CacheableASCIIString);
+        output->WriteByte((int8_t)apache::geode::client::GeodeTypeIdsImpl::Class);
+        output->WriteByte((int8_t)apache::geode::client::GeodeTypeIds::CacheableASCIIString);
         output->WriteUTF("java.lang.Object");
 
         for each (Object^ obj in this) {
-					//TODO::split
+          //TODO::split
           output->WriteObject(obj);
         }
 
@@ -55,15 +55,15 @@ namespace Apache
 
           apache::geode::client::DataOutput& nativeOutput = *(output->_NativePtr);
           nativeOutput.writeArrayLen((int32_t)Count);
-          nativeOutput.write((int8_t)apache::geode::client::GemfireTypeIdsImpl::Class);
-          nativeOutput.write((int8_t)apache::geode::client::GemfireTypeIds::CacheableASCIIString);
+          nativeOutput.write((int8_t)apache::geode::client::GeodeTypeIdsImpl::Class);
+          nativeOutput.write((int8_t)apache::geode::client::GeodeTypeIds::CacheableASCIIString);
           nativeOutput.writeASCII("java.lang.Object");
           for each (IGFSerializable^ obj in this) {
-            apache::geode::client::SerializablePtr objPtr(SafeMSerializableConvert(obj));
-            nativeOutput.writeObject(objPtr);
+          apache::geode::client::SerializablePtr objPtr(SafeMSerializableConvert(obj));
+          nativeOutput.writeObject(objPtr);
           }
 
-        _GF_MG_EXCEPTION_CATCH_ALL*/
+          _GF_MG_EXCEPTION_CATCH_ALL*/
       }
 
       IGFSerializable^ CacheableObjectArray::FromData(DataInput^ input)
@@ -89,34 +89,34 @@ namespace Apache
           int32_t len;
           nativeInput.readArrayLen(&len);
           if (len >= 0) {
-            int8_t typeCode;
-            nativeInput.read(&typeCode); // ignore CLASS typeid
-            nativeInput.read(&typeCode); // ignore string typeid
-            uint16_t classLen;
-            nativeInput.readInt(&classLen);
-            nativeInput.advanceCursor(classLen);
+          int8_t typeCode;
+          nativeInput.read(&typeCode); // ignore CLASS typeid
+          nativeInput.read(&typeCode); // ignore string typeid
+          uint16_t classLen;
+          nativeInput.readInt(&classLen);
+          nativeInput.advanceCursor(classLen);
           }
           apache::geode::client::CacheablePtr value;
           for (int32_t index = 0; index < len; ++index) {
-            nativeInput.readObject(value);
-            Add(SafeUMSerializableConvert(value.ptr()));
+          nativeInput.readObject(value);
+          Add(SafeUMSerializableConvert(value.ptr()));
           }
 
-        _GF_MG_EXCEPTION_CATCH_ALL
-        return this;*/
+          _GF_MG_EXCEPTION_CATCH_ALL
+          return this;*/
       }
 
       uint32_t CacheableObjectArray::ObjectSize::get()
-      { 
-       /* uint32_t size = static_cast<uint32_t> (sizeof(CacheableObjectArray^));
-        for each (IGFSerializable^ val in this) {
-          if (val != nullptr) {
-            size += val->ObjectSize;
-          }
-        }*/
+      {
+        /* uint32_t size = static_cast<uint32_t> (sizeof(CacheableObjectArray^));
+         for each (IGFSerializable^ val in this) {
+         if (val != nullptr) {
+         size += val->ObjectSize;
+         }
+         }*/
         return Count;
-    }  // namespace Client
-  }  // namespace Geode
-}  // namespace Apache
+      }  // namespace Client
+    }  // namespace Geode
+  }  // namespace Apache
 
- } //namespace 
+} //namespace 

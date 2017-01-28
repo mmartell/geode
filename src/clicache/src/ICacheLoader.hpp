@@ -48,7 +48,7 @@ namespace Apache
       /// <remarks>
       /// Loaders facilitate loading of data into the cache from a third-party data source. 
       /// When an application does a
-      /// lookup for a key in a region and it does not exist, GemFire checks to
+      /// lookup for a key in a region and it does not exist, Geode checks to
       /// see if any loaders are available for the region in the system and
       /// invokes them to get the value for the key into the cache.
       /// <para>
@@ -65,50 +65,50 @@ namespace Apache
       /// <seealso cref="ICacheListener" />
       /// <seealso cref="ICacheWriter" />
       generic<class TKey, class TValue>
-      public interface class ICacheLoader
-      {
-      public:
+        public interface class ICacheLoader
+        {
+        public:
 
-        /// <summary>
-        /// Loads a value. Application writers should implement this
-        /// method to customize the loading of a value.
-        /// </summary>
-        /// <remarks>
-        /// This method is called
-        /// by the caching service when the requested value is not in the cache.
-        /// Any exception thrown by this method is propagated back to and thrown
-        /// by the invocation of <see cref="Region.Get" /> that triggered this load.
-        /// </remarks>
-        /// <param name="region">a Region for which this is called.</param>
-        /// <param name="key">the key for the cacheable</param>
-        /// <param name="callbackArgument">
-        /// </param>
-        /// <returns>
-        /// the value supplied for this key, or null if no value can be
-        /// supplied. 
-        /// If every available loader returns
-        /// a null value, <see cref="Region.Get" /> will return null.
-        /// </returns>
-        /// <seealso cref="Region.Get" />
-        TValue Load(IRegion<TKey, TValue>^ region, TKey key,
-          Object^ callbackArgument);
+          /// <summary>
+          /// Loads a value. Application writers should implement this
+          /// method to customize the loading of a value.
+          /// </summary>
+          /// <remarks>
+          /// This method is called
+          /// by the caching service when the requested value is not in the cache.
+          /// Any exception thrown by this method is propagated back to and thrown
+          /// by the invocation of <see cref="Region.Get" /> that triggered this load.
+          /// </remarks>
+          /// <param name="region">a Region for which this is called.</param>
+          /// <param name="key">the key for the cacheable</param>
+          /// <param name="callbackArgument">
+          /// </param>
+          /// <returns>
+          /// the value supplied for this key, or null if no value can be
+          /// supplied. 
+          /// If every available loader returns
+          /// a null value, <see cref="Region.Get" /> will return null.
+          /// </returns>
+          /// <seealso cref="Region.Get" />
+          TValue Load(IRegion<TKey, TValue>^ region, TKey key,
+                      Object^ callbackArgument);
 
-        /// <summary>
-        /// Called when the region containing this callback is destroyed, when
-        /// the cache is closed.
-        /// </summary>
-        /// <remarks>
-        /// Implementations should clean up any external resources, such as
-        /// database connections. Any runtime exceptions this method throws will be logged.
-        /// <para>
-        /// It is possible for this method to be called multiple times on a single
-        /// callback instance, so implementations must be tolerant of this.
-        /// </para>
-        /// </remarks>
-        /// <seealso cref="Cache.Close" />
-        /// <seealso cref="Region.DestroyRegion" />
-        void Close( IRegion<TKey, TValue>^ region );
-      };
+          /// <summary>
+          /// Called when the region containing this callback is destroyed, when
+          /// the cache is closed.
+          /// </summary>
+          /// <remarks>
+          /// Implementations should clean up any external resources, such as
+          /// database connections. Any runtime exceptions this method throws will be logged.
+          /// <para>
+          /// It is possible for this method to be called multiple times on a single
+          /// callback instance, so implementations must be tolerant of this.
+          /// </para>
+          /// </remarks>
+          /// <seealso cref="Cache.Close" />
+          /// <seealso cref="Region.DestroyRegion" />
+          void Close(IRegion<TKey, TValue>^ region);
+        };
     }  // namespace Client
   }  // namespace Geode
 }  // namespace Apache

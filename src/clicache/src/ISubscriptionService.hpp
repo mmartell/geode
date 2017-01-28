@@ -28,14 +28,14 @@ namespace Apache
     {
 
       generic<class TKey>
-      /// <summary>
-      /// This generic interface class provides all Register Interest API's for 
-      /// gemfire's generic non local region (Region<TKey, TValue>).
-      /// Region<TKey, TValue> class implements all methods of this interface class.
-      /// LocalRegion<TKey, TValue> class does not implement this interface class.
-      /// </summary>
-      public interface class ISubscriptionService
-      {
+        /// <summary>
+        /// This generic interface class provides all Register Interest API's for 
+        /// geode's generic non local region (Region<TKey, TValue>).
+        /// Region<TKey, TValue> class implements all methods of this interface class.
+        /// LocalRegion<TKey, TValue> class does not implement this interface class.
+        /// </summary>
+        public interface class ISubscriptionService
+        {
         public:
 
           /// <summary>
@@ -54,7 +54,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -70,7 +70,7 @@ namespace Apache
           /// if the operation timed out
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
-          void RegisterKeys( System::Collections::Generic::ICollection<TKey>^ keys );
+          void RegisterKeys(System::Collections::Generic::ICollection<TKey>^ keys);
 
           /// <summary>
           /// Registers a collection of keys for getting updates from the server.
@@ -94,7 +94,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -137,7 +137,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// </exception>
           /// <exception cref="RegionDestroyedException">
@@ -169,7 +169,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -197,7 +197,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -213,7 +213,7 @@ namespace Apache
           /// if the operation timed out
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
-          void RegisterAllKeys( );
+          void RegisterAllKeys();
 
           /// <summary>
           /// Register interest for all the keys of the region to get
@@ -227,7 +227,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -243,7 +243,7 @@ namespace Apache
           /// if the operation timed out
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
-          void RegisterAllKeys( bool isDurable );
+          void RegisterAllKeys(bool isDurable);
 
           /// <summary>
           /// Register interest for all the keys of the region to get
@@ -264,7 +264,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -281,8 +281,8 @@ namespace Apache
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
           void RegisterAllKeys(bool isDurable,
-            System::Collections::Generic::ICollection<TKey>^ resultKeys,
-            bool getInitialValues);
+                               System::Collections::Generic::ICollection<TKey>^ resultKeys,
+                               bool getInitialValues);
 
           /// <summary>
           /// Register interest for all the keys of the region to get
@@ -306,7 +306,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// </exception>
           /// <exception cref="RegionDestroyedException">
@@ -321,9 +321,9 @@ namespace Apache
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
           void RegisterAllKeys(bool isDurable,
-            System::Collections::Generic::ICollection<TKey>^ resultKeys,
-            bool getInitialValues,
-            bool receiveValues);
+                               System::Collections::Generic::ICollection<TKey>^ resultKeys,
+                               bool getInitialValues,
+                               bool receiveValues);
 
           /// <summary>
           /// get the interest list on this client
@@ -348,7 +348,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -364,7 +364,7 @@ namespace Apache
           /// if the operation timed out
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
-          void UnregisterAllKeys( );
+          void UnregisterAllKeys();
 
           /// <summary>
           /// Register interest for the keys of the region that match the
@@ -379,7 +379,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -400,7 +400,7 @@ namespace Apache
           /// if the operation timed out
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
-          void RegisterRegex(String^ regex );
+          void RegisterRegex(String^ regex);
 
           /// <summary>
           /// Register interest for the keys of the region that match the
@@ -418,7 +418,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -439,7 +439,7 @@ namespace Apache
           /// if the operation timed out
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
-          void RegisterRegex( String^ regex, bool isDurable );
+          void RegisterRegex(String^ regex, bool isDurable);
 
           /// <summary>
           /// Register interest for the keys of the region that match the
@@ -461,7 +461,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -483,7 +483,7 @@ namespace Apache
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
           void RegisterRegex(String^ regex, bool isDurable,
-            System::Collections::Generic::ICollection<TKey>^ resultKeys);
+                             System::Collections::Generic::ICollection<TKey>^ resultKeys);
 
           /// <summary>
           /// Register interest for the keys of the region that match the
@@ -509,7 +509,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -531,7 +531,7 @@ namespace Apache
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
           void RegisterRegex(String^ regex, bool isDurable,
-            System::Collections::Generic::ICollection<TKey>^ resultKeys, bool getInitialValues);
+                             System::Collections::Generic::ICollection<TKey>^ resultKeys, bool getInitialValues);
 
           /// <summary>
           /// Register interest for the keys of the region that match the
@@ -560,7 +560,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// </exception>
           /// <exception cref="MessageException">
@@ -580,8 +580,8 @@ namespace Apache
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
           void RegisterRegex(String^ regex, bool isDurable,
-            System::Collections::Generic::ICollection<TKey>^ resultKeys, bool getInitialValues, bool receiveValues);
-          
+                             System::Collections::Generic::ICollection<TKey>^ resultKeys, bool getInitialValues, bool receiveValues);
+
           /// <summary>
           /// Unregister interest for the keys of the region that match the
           /// given regular expression to stop getting updates for them.
@@ -601,7 +601,7 @@ namespace Apache
           /// If an exception is received from the Java cache server.
           /// </exception>
           /// <exception cref="NotConnectedException">
-          /// if not connected to the GemFire system because the client cannot
+          /// if not connected to the Geode system because the client cannot
           /// establish usable connections to any of the servers given to it.
           /// For pools configured with locators, if no locators are available, innerException
           /// of NotConnectedException is set to NoAvailableLocatorsException.
@@ -617,9 +617,9 @@ namespace Apache
           /// if the operation timed out
           /// </exception>
           /// <exception cref="UnknownException">For other exceptions.</exception>
-          void UnregisterRegex( String^ regex );
+          void UnregisterRegex(String^ regex);
 
-      };
+        };
     }  // namespace Client
   }  // namespace Geode
 }  // namespace Apache

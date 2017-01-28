@@ -39,7 +39,7 @@ namespace apache
     {
 
       apache::geode::client::CacheListener* ManagedCacheListenerGeneric::create(const char* assemblyPath,
-        const char* factoryFunctionName)
+                                                                                const char* factoryFunctionName)
       {
         try
         {
@@ -58,7 +58,7 @@ namespace apache
           int32_t commaIndx = -1;
 
           if (mg_factoryFunctionName == nullptr ||
-            (dotIndx = mg_factoryFunctionName->LastIndexOf('.')) < 0)
+              (dotIndx = mg_factoryFunctionName->LastIndexOf('.')) < 0)
           {
             std::string ex_str = "ManagedCacheListenerGeneric: Factory function name '";
             ex_str += factoryFunctionName;
@@ -75,7 +75,7 @@ namespace apache
           }
 
           if ((genericsOpenIndx = mg_factoryFunctionName->LastIndexOf('<')) < 0 ||
-            genericsOpenIndx > genericsCloseIndx)
+              genericsOpenIndx > genericsCloseIndx)
           {
             std::string ex_str = "ManagedCacheListenerGeneric: Factory function name '";
             ex_str += factoryFunctionName;
@@ -84,7 +84,7 @@ namespace apache
           }
 
           if ((commaIndx = mg_factoryFunctionName->LastIndexOf(',')) < 0 ||
-            (commaIndx < genericsOpenIndx || commaIndx > genericsCloseIndx))
+              (commaIndx < genericsOpenIndx || commaIndx > genericsCloseIndx))
           {
             std::string ex_str = "ManagedCacheListenerGeneric: Factory function name '";
             ex_str += factoryFunctionName;
@@ -101,7 +101,7 @@ namespace apache
           mg_factoryFunctionName = mg_factoryFunctionName->Substring(dotIndx + 1);
 
           Apache::Geode::Client::Log::Fine("Attempting to instantiate a [{0}<{1}, {2}>] via the [{3}] factory method.",
-            mg_typeName, mg_genericKey, mg_genericVal, mg_factoryFunctionName);
+                                           mg_typeName, mg_genericKey, mg_genericVal, mg_factoryFunctionName);
 
           typeBuilder->Append("`2");
           mg_typeName = typeBuilder->ToString();
@@ -142,7 +142,7 @@ namespace apache
             Apache::Geode::Client::Log::Info("Loading function: [{0}]", mg_factoryFunctionName);
 
             MethodInfo^ mInfo = typeInst->GetMethod(mg_factoryFunctionName,
-              BindingFlags::Public | BindingFlags::Static | BindingFlags::IgnoreCase);
+                                                    BindingFlags::Public | BindingFlags::Static | BindingFlags::IgnoreCase);
 
             if (mInfo != nullptr)
             {
@@ -222,11 +222,11 @@ namespace apache
           Apache::Geode::Client::EntryEvent<Object^, Object^> mevent(&ev);
           m_managedptr->AfterCreate(%mevent);
         }
-        catch (Apache::Geode::Client::GemFireException^ ex) {
+        catch (Apache::Geode::Client::GeodeException^ ex) {
           ex->ThrowNative();
         }
         catch (System::Exception^ ex) {
-          Apache::Geode::Client::GemFireException::ThrowNative(ex);
+          Apache::Geode::Client::GeodeException::ThrowNative(ex);
         }
       }
 
@@ -236,11 +236,11 @@ namespace apache
           Apache::Geode::Client::EntryEvent<Object^, Object^> mevent(&ev);
           m_managedptr->AfterUpdate(%mevent);
         }
-        catch (Apache::Geode::Client::GemFireException^ ex) {
+        catch (Apache::Geode::Client::GeodeException^ ex) {
           ex->ThrowNative();
         }
         catch (System::Exception^ ex) {
-          Apache::Geode::Client::GemFireException::ThrowNative(ex);
+          Apache::Geode::Client::GeodeException::ThrowNative(ex);
         }
       }
 
@@ -250,11 +250,11 @@ namespace apache
           Apache::Geode::Client::EntryEvent<Object^, Object^> mevent(&ev);
           m_managedptr->AfterInvalidate(%mevent);
         }
-        catch (Apache::Geode::Client::GemFireException^ ex) {
+        catch (Apache::Geode::Client::GeodeException^ ex) {
           ex->ThrowNative();
         }
         catch (System::Exception^ ex) {
-          Apache::Geode::Client::GemFireException::ThrowNative(ex);
+          Apache::Geode::Client::GeodeException::ThrowNative(ex);
         }
       }
 
@@ -264,11 +264,11 @@ namespace apache
           Apache::Geode::Client::EntryEvent<Object^, Object^> mevent(&ev);
           m_managedptr->AfterDestroy(%mevent);
         }
-        catch (Apache::Geode::Client::GemFireException^ ex) {
+        catch (Apache::Geode::Client::GeodeException^ ex) {
           ex->ThrowNative();
         }
         catch (System::Exception^ ex) {
-          Apache::Geode::Client::GemFireException::ThrowNative(ex);
+          Apache::Geode::Client::GeodeException::ThrowNative(ex);
         }
       }
       void ManagedCacheListenerGeneric::afterRegionClear(const apache::geode::client::RegionEvent& ev)
@@ -277,11 +277,11 @@ namespace apache
           Apache::Geode::Client::RegionEvent<Object^, Object^> mevent(&ev);
           m_managedptr->AfterRegionClear(%mevent);
         }
-        catch (Apache::Geode::Client::GemFireException^ ex) {
+        catch (Apache::Geode::Client::GeodeException^ ex) {
           ex->ThrowNative();
         }
         catch (System::Exception^ ex) {
-          Apache::Geode::Client::GemFireException::ThrowNative(ex);
+          Apache::Geode::Client::GeodeException::ThrowNative(ex);
         }
       }
 
@@ -291,11 +291,11 @@ namespace apache
           Apache::Geode::Client::RegionEvent<Object^, Object^> mevent(&ev);
           m_managedptr->AfterRegionInvalidate(%mevent);
         }
-        catch (Apache::Geode::Client::GemFireException^ ex) {
+        catch (Apache::Geode::Client::GeodeException^ ex) {
           ex->ThrowNative();
         }
         catch (System::Exception^ ex) {
-          Apache::Geode::Client::GemFireException::ThrowNative(ex);
+          Apache::Geode::Client::GeodeException::ThrowNative(ex);
         }
       }
 
@@ -305,11 +305,11 @@ namespace apache
           Apache::Geode::Client::RegionEvent<Object^, Object^> mevent(&ev);
           m_managedptr->AfterRegionDestroy(%mevent);
         }
-        catch (Apache::Geode::Client::GemFireException^ ex) {
+        catch (Apache::Geode::Client::GeodeException^ ex) {
           ex->ThrowNative();
         }
         catch (System::Exception^ ex) {
-          Apache::Geode::Client::GemFireException::ThrowNative(ex);
+          Apache::Geode::Client::GeodeException::ThrowNative(ex);
         }
       }
 
@@ -319,11 +319,11 @@ namespace apache
           Apache::Geode::Client::RegionEvent<Object^, Object^> mevent(&ev);
           m_managedptr->AfterRegionLive(%mevent);
         }
-        catch (Apache::Geode::Client::GemFireException^ ex) {
+        catch (Apache::Geode::Client::GeodeException^ ex) {
           ex->ThrowNative();
         }
         catch (System::Exception^ ex) {
-          Apache::Geode::Client::GemFireException::ThrowNative(ex);
+          Apache::Geode::Client::GeodeException::ThrowNative(ex);
         }
       }
 
@@ -335,11 +335,11 @@ namespace apache
 
           m_managedptr->Close(mregion);
         }
-        catch (Apache::Geode::Client::GemFireException^ ex) {
+        catch (Apache::Geode::Client::GeodeException^ ex) {
           ex->ThrowNative();
         }
         catch (System::Exception^ ex) {
-          Apache::Geode::Client::GemFireException::ThrowNative(ex);
+          Apache::Geode::Client::GeodeException::ThrowNative(ex);
         }
       }
       void ManagedCacheListenerGeneric::afterRegionDisconnected(const apache::geode::client::RegionPtr& region)
@@ -349,11 +349,11 @@ namespace apache
             Apache::Geode::Client::Region<Object^, Object^>::Create(region.ptr());
           m_managedptr->AfterRegionDisconnected(mregion);
         }
-        catch (Apache::Geode::Client::GemFireException^ ex) {
+        catch (Apache::Geode::Client::GeodeException^ ex) {
           ex->ThrowNative();
         }
         catch (System::Exception^ ex) {
-          Apache::Geode::Client::GemFireException::ThrowNative(ex);
+          Apache::Geode::Client::GeodeException::ThrowNative(ex);
         }
       }
 

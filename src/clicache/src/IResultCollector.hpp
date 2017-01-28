@@ -28,7 +28,7 @@ namespace Apache
     namespace Client
     {
 
-			 interface class IGFSerializable;
+      interface class IGFSerializable;
       /*
       generic<class TKey>
       ref class ResultCollector;
@@ -38,42 +38,42 @@ namespace Apache
       /// collect function execution results, can be overriden 
       /// </summary>
       generic<class TResult>
-      public interface class IResultCollector
-      {
-      public:
+        public interface class IResultCollector
+        {
+        public:
 
-        /// <summary>
-        /// add result from a single function execution
-        /// </summary>
-        void AddResult(  TResult rs );
+          /// <summary>
+          /// add result from a single function execution
+          /// </summary>
+          void AddResult(TResult rs);
 
-        /// <summary>
-        /// get result 
-        /// </summary>
-        System::Collections::Generic::ICollection<TResult>^  GetResult(); 
+          /// <summary>
+          /// get result 
+          /// </summary>
+          System::Collections::Generic::ICollection<TResult>^  GetResult();
 
-        /// <summary>
-        /// get result 
-        /// </summary>
-        System::Collections::Generic::ICollection<TResult>^  GetResult(UInt32 timeout); 
+          /// <summary>
+          /// get result 
+          /// </summary>
+          System::Collections::Generic::ICollection<TResult>^  GetResult(UInt32 timeout);
 
-        /// <summary>
-        ///Call back provided to caller, which is called after function execution is
-        ///complete and caller can retrieve results using getResult()
-        /// </summary>
-  //generic<class TKey>
-	void EndResults(); 
+          /// <summary>
+          ///Call back provided to caller, which is called after function execution is
+          ///complete and caller can retrieve results using getResult()
+          /// </summary>
+          //generic<class TKey>
+          void EndResults();
 
-  /// <summary>
-  ///GemFire will invoke this method before re-executing function (in case of
-  /// Function Execution HA) This is to clear the previous execution results from
-   /// the result collector
-  /// @since 6.5
-  /// </summary>
-  //generic<class TKey>
-  void ClearResults(/*bool*/);
+          /// <summary>
+          ///Geode will invoke this method before re-executing function (in case of
+          /// Function Execution HA) This is to clear the previous execution results from
+          /// the result collector
+          /// @since 6.5
+          /// </summary>
+          //generic<class TKey>
+          void ClearResults(/*bool*/);
 
-      };
+        };
     }  // namespace Client
   }  // namespace Geode
 }  // namespace Apache

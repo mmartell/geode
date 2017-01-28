@@ -32,7 +32,7 @@
 #include "CacheableUndefined.hpp"
 #include "CacheFactory.hpp"
 #include "Cache.hpp"
-#include "GemFireCache.hpp"
+#include "GeodeCache.hpp"
 #include "CacheAttributes.hpp"
 #include "CacheStatistics.hpp"
 #include "CqAttributesFactory.hpp"

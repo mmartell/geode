@@ -419,7 +419,7 @@
     <ClInclude Include="com\vmware\IFixedPartitionResolverN.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="com\vmware\IGemFireCacheN.hpp">
+    <ClInclude Include="com\vmware\IGeodeCacheN.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="com\vmware\IGFDeltaN.hpp">
@@ -446,7 +446,7 @@
     <ClInclude Include="com\vmware\ICqStatusListenerN.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="com\vmware\GemFireClassIdsMN.hpp">
+    <ClInclude Include="com\vmware\GeodeClassIdsMN.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="com\vmware\IAuthInitializeN.hpp">
@@ -656,7 +656,7 @@
     <ClInclude Include="LogM.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IGemFireCache.hpp">
+    <ClInclude Include="IGeodeCache.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IGFSerializable.hpp">
@@ -674,7 +674,7 @@
     <ClInclude Include="IGFDelta.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GemFireClassIdsM.hpp">
+    <ClInclude Include="GeodeClassIdsM.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IAuthInitialize.hpp">

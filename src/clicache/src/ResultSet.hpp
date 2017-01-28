@@ -32,89 +32,89 @@ namespace Apache
     namespace Client
     {
 
-			interface class IGFSerializable;
+      interface class IGFSerializable;
 
       generic<class TResult>
-      ref class SelectResultsIterator;
-      /// <summary>
-      /// Encapsulates a query result set.
-      /// It specifies the interface for the resultset obtained from the
-      /// Gemfire cache server
-      /// </summary>
-      generic<class TResult>
-      public ref class ResultSet sealed
-        : public Internal::SBWrap<apache::geode::client::ResultSet>, public ISelectResults<TResult>
-      {
-      public:
-
+        ref class SelectResultsIterator;
         /// <summary>
-        /// True if this <c>ResultSet</c> is modifiable.
+        /// Encapsulates a query result set.
+        /// It specifies the interface for the resultset obtained from the
+        /// Geode cache server
         /// </summary>
-        virtual property bool IsModifiable
-        {
-          virtual bool get( );
-        }
+        generic<class TResult>
+          public ref class ResultSet sealed
+            : public Internal::SBWrap<apache::geode::client::ResultSet>, public ISelectResults<TResult>
+          {
+          public:
 
-        /// <summary>
-        /// The size of the <c>ResultSet</c>.
-        /// </summary>
-        virtual property int32_t Size
-        {
-          virtual int32_t get( );
-        }
+            /// <summary>
+            /// True if this <c>ResultSet</c> is modifiable.
+            /// </summary>
+            virtual property bool IsModifiable
+            {
+              virtual bool get();
+            }
 
-        /// <summary>
-        /// Get an object at the given index.
-        /// </summary>
-        virtual property /*IGFSerializable^*/TResult GFINDEXER( size_t )
-        {
-          virtual /*IGFSerializable^*/TResult get( size_t index );
-        }
+            /// <summary>
+            /// The size of the <c>ResultSet</c>.
+            /// </summary>
+            virtual property int32_t Size
+            {
+              virtual int32_t get();
+            }
 
-        /// <summary>
-        /// Get an iterator for the result set.
-        /// </summary>
-        virtual SelectResultsIterator<TResult>^ GetIterator( );
+            /// <summary>
+            /// Get an object at the given index.
+            /// </summary>
+            virtual property /*IGFSerializable^*/TResult GFINDEXER(size_t)
+            {
+              virtual /*IGFSerializable^*/TResult get(size_t index);
+            }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <c>System.Collections.Generic.IEnumerator</c> that
-        /// can be used to iterate through the <c>ResultSet</c>.
-        /// </returns>
-        virtual System::Collections::Generic::IEnumerator</*IGFSerializable^*/TResult>^
-          GetEnumerator( );
+            /// <summary>
+            /// Get an iterator for the result set.
+            /// </summary>
+            virtual SelectResultsIterator<TResult>^ GetIterator();
 
-
-      internal:
-
-        /// <summary>
-        /// Internal factory function to wrap a native object pointer inside
-        /// this managed class with null pointer check.
-        /// </summary>
-        /// <param name="nativeptr">The native object pointer</param>
-        /// <returns>
-        /// The managed wrapper object; null if the native pointer is null.
-        /// </returns>
-        inline static ResultSet<TResult>^ Create(apache::geode::client::ResultSet* nativeptr)
-        {
-          return (nativeptr != nullptr ? gcnew ResultSet(nativeptr) : nullptr);
-        }
+            /// <summary>
+            /// Returns an enumerator that iterates through the collection.
+            /// </summary>
+            /// <returns>
+            /// A <c>System.Collections.Generic.IEnumerator</c> that
+            /// can be used to iterate through the <c>ResultSet</c>.
+            /// </returns>
+            virtual System::Collections::Generic::IEnumerator</*IGFSerializable^*/TResult>^
+              GetEnumerator();
 
 
-      private:
+          internal:
 
-        virtual System::Collections::IEnumerator^ GetIEnumerator( ) sealed
-          = System::Collections::IEnumerable::GetEnumerator;
+            /// <summary>
+            /// Internal factory function to wrap a native object pointer inside
+            /// this managed class with null pointer check.
+            /// </summary>
+            /// <param name="nativeptr">The native object pointer</param>
+            /// <returns>
+            /// The managed wrapper object; null if the native pointer is null.
+            /// </returns>
+            inline static ResultSet<TResult>^ Create(apache::geode::client::ResultSet* nativeptr)
+            {
+              return (nativeptr != nullptr ? gcnew ResultSet(nativeptr) : nullptr);
+            }
 
-        /// <summary>
-        /// Private constructor to wrap a native object pointer
-        /// </summary>
-        /// <param name="nativeptr">The native object pointer</param>
-        inline ResultSet(apache::geode::client::ResultSet* nativeptr)
-          : SBWrap(nativeptr) { }
-      };
+
+          private:
+
+            virtual System::Collections::IEnumerator^ GetIEnumerator() sealed
+              = System::Collections::IEnumerable::GetEnumerator;
+
+            /// <summary>
+            /// Private constructor to wrap a native object pointer
+            /// </summary>
+            /// <param name="nativeptr">The native object pointer</param>
+            inline ResultSet(apache::geode::client::ResultSet* nativeptr)
+              : SBWrap(nativeptr) { }
+          };
     }  // namespace Client
   }  // namespace Geode
 }  // namespace Apache

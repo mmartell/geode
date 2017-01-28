@@ -49,11 +49,11 @@ namespace Apache
       /// region modification occurs. 
       /// </para><para>
       /// Before a region is updated via a put, create, or destroy operation,
-      /// GemFire will call an <c>ICacheWriter</c> that is installed anywhere in any
+      /// Geode will call an <c>ICacheWriter</c> that is installed anywhere in any
       /// participating cache for that region, preferring a local <c>ICacheWriter</c>
       /// if there is one. Usually there will be only one <c>ICacheWriter</c> in
       /// the distributed system. If there are multiple <c>ICacheWriter</c>s
-      /// available in the distributed system, the GemFire
+      /// available in the distributed system, the Geode
       /// implementation always prefers one that is stored locally, or else picks one
       /// arbitrarily. In any case, only one <c>ICacheWriter</c> will be invoked.
       /// </para><para>
@@ -79,93 +79,93 @@ namespace Apache
       /// <seealso cref="ICacheLoader" />
       /// <seealso cref="ICacheListener" />
       generic <class TKey, class TValue>
-      public interface class ICacheWriter
-      {
-      public:
+        public interface class ICacheWriter
+        {
+        public:
 
-        /// <summary>
-        /// Called before an entry is updated. The entry update is initiated by a
-        /// <c>Put</c> or a <c>Get</c> that causes the loader to update an existing entry.
-        /// </summary>
-        /// <remarks>
-        /// The entry previously existed in the cache where the operation was
-        /// initiated, although the old value may have been null. The entry being
-        /// updated may or may not exist in the local cache where the CacheWriter is
-        /// installed.
-        /// </remarks>
-        /// <param name="ev">
-        /// event object associated with updating the entry
-        /// </param>
-        /// <seealso cref="Region.Put" />
-        /// <seealso cref="Region.Get" />
-        bool BeforeUpdate( EntryEvent<TKey, TValue>^ ev );
+          /// <summary>
+          /// Called before an entry is updated. The entry update is initiated by a
+          /// <c>Put</c> or a <c>Get</c> that causes the loader to update an existing entry.
+          /// </summary>
+          /// <remarks>
+          /// The entry previously existed in the cache where the operation was
+          /// initiated, although the old value may have been null. The entry being
+          /// updated may or may not exist in the local cache where the CacheWriter is
+          /// installed.
+          /// </remarks>
+          /// <param name="ev">
+          /// event object associated with updating the entry
+          /// </param>
+          /// <seealso cref="Region.Put" />
+          /// <seealso cref="Region.Get" />
+          bool BeforeUpdate(EntryEvent<TKey, TValue>^ ev);
 
-        /// <summary>
-        /// Called before an entry is created. Entry creation is initiated by a
-        /// <c>Create</c>, a <c>Put</c>, or a <c>Get</c>.
-        /// </summary>
-        /// <remarks>
-        /// The <c>CacheWriter</c> can determine whether this value comes from a
-        /// <c>Get</c> or not from <c>Load</c>. The entry being
-        /// created may already exist in the local cache where this <c>CacheWriter</c>
-        /// is installed, but it does not yet exist in the cache where the operation was initiated.
-        /// </remarks>
-        /// <param name="ev">
-        /// event object associated with creating the entry
-        /// </param>
-        /// <seealso cref="Region.Create" />
-        /// <seealso cref="Region.Put" />
-        /// <seealso cref="Region.Get" />
-        bool BeforeCreate( EntryEvent<TKey, TValue>^ ev );
+          /// <summary>
+          /// Called before an entry is created. Entry creation is initiated by a
+          /// <c>Create</c>, a <c>Put</c>, or a <c>Get</c>.
+          /// </summary>
+          /// <remarks>
+          /// The <c>CacheWriter</c> can determine whether this value comes from a
+          /// <c>Get</c> or not from <c>Load</c>. The entry being
+          /// created may already exist in the local cache where this <c>CacheWriter</c>
+          /// is installed, but it does not yet exist in the cache where the operation was initiated.
+          /// </remarks>
+          /// <param name="ev">
+          /// event object associated with creating the entry
+          /// </param>
+          /// <seealso cref="Region.Create" />
+          /// <seealso cref="Region.Put" />
+          /// <seealso cref="Region.Get" />
+          bool BeforeCreate(EntryEvent<TKey, TValue>^ ev);
 
-        /// <summary>
-        /// Called before an entry is destroyed.
-        /// </summary>
-        /// <remarks>
-        /// The entry being destroyed may or may
-        /// not exist in the local cache where the CacheWriter is installed. This method
-        /// is <em>not</em> called as a result of expiration or
-        /// <see cref="Region.LocalDestroyRegion" />.
-        /// </remarks>
-        /// <param name="ev">
-        /// event object associated with destroying the entry
-        /// </param>
-        /// <seealso cref="Region.Destroy" />
-        bool BeforeDestroy( EntryEvent<TKey, TValue>^ ev );
+          /// <summary>
+          /// Called before an entry is destroyed.
+          /// </summary>
+          /// <remarks>
+          /// The entry being destroyed may or may
+          /// not exist in the local cache where the CacheWriter is installed. This method
+          /// is <em>not</em> called as a result of expiration or
+          /// <see cref="Region.LocalDestroyRegion" />.
+          /// </remarks>
+          /// <param name="ev">
+          /// event object associated with destroying the entry
+          /// </param>
+          /// <seealso cref="Region.Destroy" />
+          bool BeforeDestroy(EntryEvent<TKey, TValue>^ ev);
 
-        /// <summary>
-        /// Called before this region is cleared.
-        /// </summary>
-        bool BeforeRegionClear( RegionEvent<TKey, TValue>^ ev );
+          /// <summary>
+          /// Called before this region is cleared.
+          /// </summary>
+          bool BeforeRegionClear(RegionEvent<TKey, TValue>^ ev);
 
-        /// <summary>
-        /// Called before this region is destroyed.
-        /// </summary>
-        /// <param name="ev">
-        /// event object associated with destroying the region
-        /// </param>
-        /// <seealso cref="Region.DestroyRegion" />
-        bool BeforeRegionDestroy( RegionEvent<TKey, TValue>^ ev );
+          /// <summary>
+          /// Called before this region is destroyed.
+          /// </summary>
+          /// <param name="ev">
+          /// event object associated with destroying the region
+          /// </param>
+          /// <seealso cref="Region.DestroyRegion" />
+          bool BeforeRegionDestroy(RegionEvent<TKey, TValue>^ ev);
 
-        /// <summary>
-        /// Called when the region containing this callback is destroyed, when
-        /// the cache is closed.
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// Implementations should clean up any external
-        /// resources, such as database connections. Any runtime exceptions this method
-        /// throws will be logged.
-        /// </para><para>
-        /// It is possible for this method to be called multiple times on a single
-        /// callback instance, so implementations must be tolerant of this.
-        /// </para>
-        /// </remarks>
-        /// <param name="region">region to close</param>
-        /// <seealso cref="Cache.Close" />
-        /// <seealso cref="Region.DestroyRegion" />
-        void Close( IRegion<TKey, TValue>^ region );
-      };
+          /// <summary>
+          /// Called when the region containing this callback is destroyed, when
+          /// the cache is closed.
+          /// </summary>
+          /// <remarks>
+          /// <para>
+          /// Implementations should clean up any external
+          /// resources, such as database connections. Any runtime exceptions this method
+          /// throws will be logged.
+          /// </para><para>
+          /// It is possible for this method to be called multiple times on a single
+          /// callback instance, so implementations must be tolerant of this.
+          /// </para>
+          /// </remarks>
+          /// <param name="region">region to close</param>
+          /// <seealso cref="Cache.Close" />
+          /// <seealso cref="Region.DestroyRegion" />
+          void Close(IRegion<TKey, TValue>^ region);
+        };
     }  // namespace Client
   }  // namespace Geode
 }  // namespace Apache

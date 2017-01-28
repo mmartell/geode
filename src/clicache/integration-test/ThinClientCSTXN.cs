@@ -569,7 +569,7 @@ namespace Apache.Geode.Client.UnitTests
       CacheHelper.SetupJavaServers(true, "client_server_persistent_transactions.xml");
       CacheHelper.StartJavaLocator(1, "GFELOC");
       Util.Log("Locator started");
-      CacheHelper.StartJavaServerWithLocators(1, "GFECS1", 1, "--J=-Dgemfire.ALLOW_PERSISTENT_TRANSACTIONS=true");
+      CacheHelper.StartJavaServerWithLocators(1, "GFECS1", 1, "--J=-Dgeode.ALLOW_PERSISTENT_TRANSACTIONS=true");
 
       Util.Log("Cacheserver 1 started.");
 
@@ -772,7 +772,7 @@ namespace Apache.Geode.Client.UnitTests
       private AutoResetEvent m_txevent = null;
 
     }
-    
+
     public void initializePdxSerializer()
     {
       Serializable.RegisterPdxSerializer(new PdxSerializer());
@@ -800,11 +800,11 @@ namespace Apache.Geode.Client.UnitTests
       for (int i = 100; i < 110; i++)
       {
         object put = new SerializePdx1(true);
-        o_region1.Region[i] = put;                
+        o_region1.Region[i] = put;
         put = new SerializePdx2(true);
         o_region1.Region[i + 10] = put;
         put = new SerializePdx3(true, i % 2);
-        o_region1.Region[i + 20] = put;        
+        o_region1.Region[i + 20] = put;
       }
       CacheHelper.CSTXManager.Commit();
 
@@ -821,7 +821,7 @@ namespace Apache.Geode.Client.UnitTests
         Assert.AreEqual(put, ret);
       }
       Util.Log("Region keys count after pdx-keys commit = {0} ", o_region1.Region.Keys.Count);
-      Assert.AreEqual(60, o_region1.Region.Keys.Count, "Commit didn't put two values in the region");      
+      Assert.AreEqual(60, o_region1.Region.Keys.Count, "Commit didn't put two values in the region");
     }
   }
 }
