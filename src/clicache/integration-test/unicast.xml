@@ -2,12 +2,12 @@
 
 <!-- This is the Ant build file for running C tests.  It is designed 
      to be invoked from the build.xml Ant script in the top level directory
-     of the Geode tree, and expects to inherit the properties set
+     of the gemfire tree, and expects to inherit the properties set
      there.
   -->
 
-<project name ="geode" default="usage">
-  <description>Runs Geode C++ Tests</description>
+<project name ="gemfire" default="usage">
+  <description>Runs gemfire C++ Tests</description>
   <target name="usage">
     <echo>
     This script is designed to be invoked from the build.xml script
@@ -351,7 +351,7 @@ ${output}
       <!--entry key="cache-server-version" value="5.7"/-->
       <!--entry key="license-file" value="${hidden.dir}/internal.license.nativeclientonly.zip"/-->
     </propertyfile>    
-    <!--propertyfile file="${tst_res}/cpp/${test.type}/native-client-only/geode.properties">
+    <!--propertyfile file="${tst_res}/cpp/${test.type}/native-client-only/gemfire.properties">
       <entry key="log-level" value="Config"/>
     </propertyfile-->    
   <parallel threadCount='${parallelTests}'>

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0"?>
 
 
-<cache xmlns="http://geode.apache.org/schema/cache"
+<cache xmlns="http://gemfire.apache.org/schema/cache"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://geode.apache.org/schema/cache http://geode.apache.org/schema/cache/cache-1.0.xsd"
+       xsi:schemaLocation="http://gemfire.apache.org/schema/cache http://gemfire.apache.org/schema/cache/cache-1.0.xsd"
        version="1.0">
   <cache-server port="HOST_PORT1"/>
   <pdx persistent="true"/>
